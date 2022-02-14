@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: Login = {
+  public loginFormData: Login = {
     email: null,
     password: null
   }
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.signin(this.loginForm).subscribe((data) => (console.log(data)));
+    this.authService.signin(this.loginFormData).subscribe((data) => (console.log(data)));
   }
 
 }
