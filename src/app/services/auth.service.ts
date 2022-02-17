@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Login } from '../interfaces/auth/login';
+import { User } from '../interfaces/user';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -17,7 +17,7 @@ export class AuthService {
   private apiurl: string = "http://localhost:5000";
   constructor(private http: HttpClient) { }
 
-  signin(data: Login): Observable<Login> {
-    return this.http.post<Login>(`${this.apiurl}/auth/login`, data, httpOptions);
+  signin(data: User): Observable<User> {
+    return this.http.post<User>(`${this.apiurl}/auth/login`, data, httpOptions);
   }
 }
