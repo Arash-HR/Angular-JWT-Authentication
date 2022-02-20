@@ -51,4 +51,12 @@ export class JWTTokenService {
     }
     return true;
   }
+
+  isValidToken(token: string): boolean {
+    this.setToken(token);
+    if (!this.isTokenExpired()) {
+      return true;
+    }
+    return false;
+  }
 }
