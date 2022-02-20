@@ -3,8 +3,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" routerLink="/">{{ title }}</a>
             <div>
-                <a class="btn" routerLink="/login">Login</a>
-                <a class="btn" routerLink="/register">Register</a>
+                <a class="btn" routerLink="/login" *ngIf="!loggedIn">Login</a>
+                <a class="btn" routerLink="/register" *ngIf="!loggedIn">Register</a>
+                <a class="btn" *ngIf="loggedIn" (click)="logOut()">Logout</a>
             </div>
         </div>
     </nav>
