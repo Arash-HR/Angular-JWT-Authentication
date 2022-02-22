@@ -24,6 +24,7 @@ export class JwtInterceptor implements HttpInterceptor {
       if (status && isApiUrl) {
         request = request.clone({
           setHeaders: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${this.localStorage.get("access_token")}`
           }
         });
