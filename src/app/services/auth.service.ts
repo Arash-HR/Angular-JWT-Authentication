@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interfaces/user';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import { JWTTokenService } from './jwttoken.service';
 import { LocalStorageService } from './local-storage.service';
@@ -16,8 +17,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
-  private apiurl: string = "http://localhost:5000";
 
   public loggedIn = new BehaviorSubject<boolean>(this.jwttoken.isValidToken(this.localStorage.get("access_token") || ''));
   authStatus = this.loggedIn.asObservable();
@@ -44,7 +43,7 @@ export class AuthService {
   }
 
   signIn(data: User): Observable<User> {
-    return this.http.post<User>(`${this.apiurl}/auth/login`, data, httpOptions);
+    return this.http.post<User>(`${environment.apiurl}/auth/login`, data, httpOptions);
 
   }
 
