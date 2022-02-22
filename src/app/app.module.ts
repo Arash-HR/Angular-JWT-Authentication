@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { AuthService } from './services/auth.service';
 import { JWTTokenService } from './services/jwttoken.service';
 import { LocalStorageService } from './services/local-storage.service';
+
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { LocalStorageService } from './services/local-storage.service';
     HttpClientModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthService,
     JWTTokenService,
     LocalStorageService
