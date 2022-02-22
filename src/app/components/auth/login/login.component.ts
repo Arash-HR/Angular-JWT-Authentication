@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private localStorage: LocalStorageService,
     private router: Router
-  ) { }
+  ) {
+    this.authService.authStatus.subscribe(status => { if (status) { this.router.navigate(['/']) } });
+  }
 
   ngOnInit(): void {
   }
